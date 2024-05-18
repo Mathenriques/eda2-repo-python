@@ -1,25 +1,35 @@
 import random
 import time
 
-def quick_sort(arr):
-  def partition(low, high):
-    pivot = arr[high]
-    i = low - 1
-    for j in range(low, high):
-      if arr[j] <= pivot:
-        i = i + 1
-        arr[i], arr[j] = arr[j], arr[i]
-    arr[i + 1], arr[high] = arr[high], arr[i + 1]
-    return i + 1
+def mergeSort(array):
+  if len(array) > 1:
+    middle = len(array) // 2
+    left = array[:middle]
+    right = array[middle:]
 
-  def quick_sort_recursive(low, high):
-    if low < high:
-      pi = partition(low, high)
-      quick_sort_recursive(low, pi - 1)
-      quick_sort_recursive(pi + 1, high)
+    left = mergeSort(left)
+    right = mergeSort(right)
 
-  quick_sort_recursive(0, len(arr) - 1)
-  return arr
+    array = merge(left, right)
+
+  return array
+
+def merge(left, right):
+  result = []
+  i = 0
+  j = 0
+
+  while i < len(left) and j < len(right):
+    if left[i] < right[j]:
+      result.append(left[i])
+      i += 1
+    else:
+      result.append(right[j])
+      j += 1
+
+  result += left[i:]
+  result += right[j:]
+  return result
 
 def defaultProgram(l, tamanho, alvo):
   inicio = time.time()
@@ -43,9 +53,9 @@ def defaultProgram(l, tamanho, alvo):
   print(f"Há {int(contador/2)} pares cuja a soma é igual a {alvo}")
   print()
 
-def quickSortAndDefault(l, tamanho, alvo):
+def mergeSortAndDefault(l, tamanho, alvo):
   inicio = time.time()
-  l = quick_sort(l)
+  l = mergeSort(l)
   contador = 0
   # Geração da lista de números únicos
   while len(l) < tamanho:
@@ -61,7 +71,7 @@ def quickSortAndDefault(l, tamanho, alvo):
 
     # Resultado ajustado para não contar pares duplicados e tempo de execução
   tempo_decorrido = time.time() - inicio
-  print('Função Quick Sort + Processo Default ----------------------------------')
+  print('Função Merge Sort + Processo Default ----------------------------------')
   print(f"Tempo de execução: {tempo_decorrido} segundos")
   print(f"Há {int(contador/2)} pares cuja a soma é igual a {alvo}")
   print()
@@ -117,8 +127,8 @@ alvo = random.randint(0, valor_maximo)
 while alvo % 2 == 0:
   alvo = random.randint(0, valor_maximo)
 
-defaultProgram(l, tamanho, alvo)
-quickSortAndDefault(l, tamanho, alvo)
+# defaultProgram(l, tamanho, alvo)
+mergeSortAndDefault(l, tamanho, alvo)
 paresPorConjunto(l,alvo)
 paresPonteiros(l, tamanho, alvo)
 
