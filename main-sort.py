@@ -1,36 +1,6 @@
 import random
 import time
 
-def mergeSort(array):
-  if len(array) > 1:
-    middle = len(array) // 2
-    left = array[:middle]
-    right = array[middle:]
-
-    left = mergeSort(left)
-    right = mergeSort(right)
-
-    array = merge(left, right)
-
-  return array
-
-def merge(left, right):
-  result = []
-  i = 0
-  j = 0
-
-  while i < len(left) and j < len(right):
-    if left[i] < right[j]:
-      result.append(left[i])
-      i += 1
-    else:
-      result.append(right[j])
-      j += 1
-
-  result += left[i:]
-  result += right[j:]
-  return result
-
 def defaultProgram(l, tamanho, alvo):
   inicio = time.time()
   contador = 0
@@ -55,21 +25,8 @@ def defaultProgram(l, tamanho, alvo):
 
 def mergeSortAndDefault(l, tamanho, alvo):
   inicio = time.time()
-  l = mergeSort(l)
-  contador = 0
-  # Geração da lista de números únicos
-  while len(l) < tamanho:
-    num = random.randint(0, valor_maximo)
-    if num not in l:
-      l.append(num)
 
-  # Cálculo de pares cuja soma é igual ao alvo
-  for i in l:
-    compl = alvo - i
-    if compl in l:
-      contador += 1
-
-    # Resultado ajustado para não contar pares duplicados e tempo de execução
+  # Resultado ajustado para não contar pares duplicados e tempo de execução
   tempo_decorrido = time.time() - inicio
   print('Função Merge Sort + Processo Default ----------------------------------')
   print(f"Tempo de execução: {tempo_decorrido} segundos")
