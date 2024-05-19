@@ -48,6 +48,7 @@ def algoritimo_padrao_hash_generate(alvo, tamanho, valor_maximo):
     print(f"Tempo de execução da função padrão com generated hash: {tempo_decorrido} segundos")
     print(f"Pares encontrados {int(contador / 2)}")
 
+
 def hastable_algoritmo(alvo, tamanho, valor_maximo):
     inicio = time.time()
     visto = set()
