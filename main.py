@@ -24,6 +24,7 @@ def algoritimo_padrao(alvo, tamanho, valor_maximo):
     print(f"Tempo de execução da função padrão: {tempo_decorrido} segundos")
     print(f"Pares encontrados {int(contador / 2)}")
 
+
 def algoritimo_padrao_hash_generate(alvo, tamanho, valor_maximo):
     inicio = time.time()
 
